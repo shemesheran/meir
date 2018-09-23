@@ -1,7 +1,5 @@
-from app.meir.html_page_fetching.lessons_page_iterator import LessonsPageIterator
-from app.meir.scraping.html_lessons_page_scraper import LessonsPageScraper
 from app.meir.podcast_rss_generator import MeirPodcastRSSGenerator
-
+import logging
 
 class RequestHandler:
 
@@ -20,7 +18,9 @@ class RequestHandler:
 
     def __get_lessons_series_title(self):
         first_page = self.lessons_page_iterator.get_first_page()
+        logging.debug(u"first page:\n{}".format(first_page))
         series_title = self.lessons_scraper.get_lessons_series_title(first_page)
+        logging.debug(u"series title:\n{}".format(series_title))
         return series_title
 
     def __get_lessons_set(self):

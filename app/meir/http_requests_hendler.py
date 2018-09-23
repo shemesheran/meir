@@ -25,7 +25,7 @@ class HttpRequestsHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        print "do_get"
+        logging.info("handling a GET request")
         self._set_headers()
         logging.info("started to handle request")
         request_handler = RequestHandler("http://meirtv.co.il/site/set.asp?id=22939",
