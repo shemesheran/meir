@@ -18,7 +18,6 @@ class LessonsPageIterator:
             logging.debug("first_page_url: {}".format(first_page_url))
             web_driver.get(first_page_url)
             first_page_source = web_driver.page_source
-            logging.debug("first_page_source: {}".format(first_page_source))
             return first_page_source
 
         return self.web_driver_proxy.execute_with_web_driver(do_get_first_page)
