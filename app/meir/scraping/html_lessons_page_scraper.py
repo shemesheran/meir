@@ -6,6 +6,7 @@ import logging
 class LessonsPageScraper:
 
     def get_lessons_series_title(self, html_page_text):
+        print "get_lessons_series_title"
         soup = BeautifulSoup(html_page_text, 'html.parser')
         series_title_tag = soup.select_one(".pagekotret")
         logging.debug(u"series_title_tag:\n{}".format(series_title_tag))
