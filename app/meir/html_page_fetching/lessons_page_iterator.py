@@ -1,5 +1,6 @@
 from urllib import urlencode
 from urlparse import urlparse, parse_qs, urlunparse
+import logging
 
 class LessonsPageIterator:
 
@@ -14,9 +15,11 @@ class LessonsPageIterator:
     def get_first_page(self):
         def do_get_first_page(web_driver):
             first_page_url = self.__get_url_with_page_number(1)
+            logging.debug("first_page_url: {}".format(first_page_url))
             web_driver.get(first_page_url)
-            source = web_driver.page_source
-            return source
+            first_page_source = web_driver.page_source
+            logging.debug("first_page_source: {}".format(first_page_source))
+            return first_page_source
 
         return self.web_driver_proxy.execute_with_web_driver(do_get_first_page)
 

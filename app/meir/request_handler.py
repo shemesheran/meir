@@ -10,6 +10,7 @@ class RequestHandler:
         self.lessons_scraper = lessons_scraper
 
     def get_lessons_rss(self):
+        logging.info("Getting lessons RSS for {}".format(self.request_url))
         lessons_series_title = self.__get_lessons_series_title()
         lessons_set = self.__get_lessons_set()
         meir_podcast_generator = MeirPodcastRSSGenerator(lessons_series_title, self.request_url)
@@ -18,7 +19,6 @@ class RequestHandler:
 
     def __get_lessons_series_title(self):
         first_page = self.lessons_page_iterator.get_first_page()
-        logging.debug(u"first page:\n{}".format(first_page))
         series_title = self.lessons_scraper.get_lessons_series_title(first_page)
         logging.debug(u"series title:\n{}".format(series_title))
         return series_title

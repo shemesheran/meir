@@ -27,11 +27,10 @@ class HttpRequestsHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
         logging.info("handling a GET request")
         self._set_headers()
-        logging.info("started to handle request")
         request_handler = RequestHandler("http://meirtv.co.il/site/set.asp?id=22939",
                                          self.lessons_page_scraper,
                                          self.lessons_page_iterator_factory)
         lessons_rss = request_handler.get_lessons_rss()
 
-        logging.info("finnished to handle request")
+        logging.info("finished to handle GET request")
         self.wfile.write(lessons_rss)
