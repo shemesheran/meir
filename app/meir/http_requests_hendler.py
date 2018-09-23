@@ -10,12 +10,15 @@ from app.meir.html_page_fetching.web_driver_proxy import WebDriverProxy
 from app.meir.html_page_fetching.web_driver_repository import WebDriverRepository
 from app.meir.request_handler import RequestHandler
 from app.meir.scraping.html_lessons_page_scraper import LessonsPageScraper
-
+import ConfigParser
 
 class HttpRequestsHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
+    config_parser = ConfigParser.ConfigParser()
+    config_parser.read("application.conf")
+    web_drivers_number = config_parser.get(section="web_drivers", option="number")
     lessons_page_scraper = LessonsPageScraper()
-    web_drivers_repository = WebDriverRepository()
+    web_drivers_repository = WebDriverRepository(web_drivers_number)
     web_driver_proxy = WebDriverProxy(web_drivers_repository)
     lessons_page_iterator_factory = LessonsPageIteratorFactory(web_driver_proxy)
 

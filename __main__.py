@@ -2,6 +2,7 @@ from BaseHTTPServer import HTTPServer
 
 from app.meir.http_requests_hendler import HttpRequestsHandler
 import logging
+import ConfigParser
 from logging.config import fileConfig
 
 SERVER_PORT = 8080

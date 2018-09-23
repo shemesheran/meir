@@ -1,15 +1,18 @@
 from Queue import Queue
 from selenium import webdriver
 
+import logging
+
 from selenium.webdriver.chrome.options import Options
 
 class WebDriverRepository:
 
-    __number_of_web_drivers_in_queue = 1
     __get_web_driver_timeout_seconds = 5
     __executable_path = "/home/eran/Documents/chromedriver"
 
-    def __init__(self):
+    def __init__(self, web_drivers_number=1):
+        logging.info("working with {} web drivers".format(web_drivers_number))
+        self.__number_of_web_drivers_in_queue = web_drivers_number
         self.__web_drivers_queue = Queue()
         self.__populate_web_drivers_queue()
 
