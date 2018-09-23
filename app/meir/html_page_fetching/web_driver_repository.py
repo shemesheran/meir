@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 
 class WebDriverRepository:
 
-    __number_of_web_drivers_in_queue = 5
+    __number_of_web_drivers_in_queue = 1
     __get_web_driver_timeout_seconds = 5
     __executable_path = "/home/eran/Documents/chromedriver"
 
