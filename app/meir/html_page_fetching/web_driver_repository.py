@@ -12,7 +12,7 @@ class WebDriverRepository:
 
     def __init__(self, web_drivers_number=1):
         logging.info("working with {} web drivers".format(web_drivers_number))
-        self.__number_of_web_drivers_in_queue = web_drivers_number
+        self.__number_of_web_drivers_in_queue = int(web_drivers_number)
         self.__web_drivers_queue = Queue()
         self.__populate_web_drivers_queue()
 
@@ -40,4 +40,7 @@ class WebDriverRepository:
         web_driver = self.get_web_driver()
         while (web_driver is not None):
             web_driver.close()
-            web_driver = self.get_web_driver()
+            try:
+                web_driver = self.__web_drivers_queue.get_nowait()
+            except Exception:
+                break

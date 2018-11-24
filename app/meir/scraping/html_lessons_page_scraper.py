@@ -1,15 +1,14 @@
 from bs4 import BeautifulSoup
 
 from app.meir.lesson import Lesson
-import logging
 
 class LessonsPageScraper:
 
-    series_title_select_query = ".pagekotret"
-
-    def get_lessons_series_title(self, html_page_text):
+    def scrap_lessons_series_title(self, html_page_text):
         soup = BeautifulSoup(html_page_text, 'html.parser')
-        series_title_tag = soup.select_one(self.series_title_select_query)
+        series_title_select_query = ".pagekotret"
+        series_title_tag = soup.select_one(series_title_select_query)
+        series_title_tag.findChildren
         title_lines_text = map(lambda x: x.text, series_title_tag.children)
         title_lines_text_unicoded = map(unicode, title_lines_text)
         change_list_of_strings_to_paragraph = lambda x, y: u"{}\n{}".format(x, y)

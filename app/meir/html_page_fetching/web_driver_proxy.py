@@ -4,7 +4,9 @@ class WebDriverProxy:
 
     def execute_with_web_driver(self, function):
         web_driver = self.web_driver_repository.get_web_driver()
-        return_val = function(web_driver)
-        self.web_driver_repository.return_web_driver(web_driver)
-        return return_val
+        try:
+            return_val = function(web_driver)
+        finally:
+            self.web_driver_repository.return_web_driver(web_driver)
+            return return_val
 
